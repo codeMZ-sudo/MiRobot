@@ -1,8 +1,0 @@
-prefix=/home/mist/catking_ws/devel/.private/slam_dwa
-
-Name: slam_dwa
-Description: Description of slam_dwa
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

@@ -1,5 +1,0 @@
-mecanum_astar_planner
-/home/mist/catking_ws/devel/.private/mecanum_astar_planner/cmake.lock /home/mist/catking_ws/devel/./cmake.lock
-/home/mist/catking_ws/devel/.private/mecanum_astar_planner/lib/pkgconfig/mecanum_astar_planner.pc /home/mist/catking_ws/devel/lib/pkgconfig/mecanum_astar_planner.pc
-/home/mist/catking_ws/devel/.private/mecanum_astar_planner/share/mecanum_astar_planner/cmake/mecanum_astar_plannerConfig.cmake /home/mist/catking_ws/devel/share/mecanum_astar_planner/cmake/mecanum_astar_plannerConfig.cmake
-/home/mist/catking_ws/devel/.private/mecanum_astar_planner/share/mecanum_astar_planner/cmake/mecanum_astar_plannerConfig-version.cmake /home/mist/catking_ws/devel/share/mecanum_astar_planner/cmake/mecanum_astar_plannerConfig-version.cmake

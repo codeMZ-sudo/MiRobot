@@ -1,8 +1,0 @@
-prefix=/home/mist/catking_ws/devel/.private/gazebo_omni_plugins
-
-Name: gazebo_omni_plugins
-Description: Description of gazebo_omni_plugins
-Version: 0.0.0
-Cflags: -I/home/mist/catking_ws/devel/.private/gazebo_omni_plugins/include -I/home/mist/catking_ws/src/gazebo_sim/gazebo_omni_plugins/include
-Libs: -L${prefix}/lib -lgazebo_omni_plugins
-Requires: nav_msgs geometry_msgs joint_state_controller robot_state_publisher roscpp std_msgs tf

@@ -1,6 +1,0 @@
-devel_space: /home/mist/catking_ws/devel
-install: false
-install_space: /home/mist/catking_ws/install
-profile: default
-source_space: /home/mist/catking_ws/src
-workspace: /home/mist/catking_ws

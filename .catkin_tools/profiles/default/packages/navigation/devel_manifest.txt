@@ -1,5 +1,0 @@
-navigation
-/home/mist/catking_ws/devel/.private/navigation/cmake.lock /home/mist/catking_ws/devel/./cmake.lock
-/home/mist/catking_ws/devel/.private/navigation/lib/pkgconfig/navigation.pc /home/mist/catking_ws/devel/lib/pkgconfig/navigation.pc
-/home/mist/catking_ws/devel/.private/navigation/share/navigation/cmake/navigationConfig.cmake /home/mist/catking_ws/devel/share/navigation/cmake/navigationConfig.cmake
-/home/mist/catking_ws/devel/.private/navigation/share/navigation/cmake/navigationConfig-version.cmake /home/mist/catking_ws/devel/share/navigation/cmake/navigationConfig-version.cmake

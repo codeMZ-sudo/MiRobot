@@ -1,9 +1,0 @@
-[libprotobuf WARNING google/protobuf/compiler/parser.cc:562] No syntax specified for the proto file: collision_map_request.proto. Please use 'syntax = "proto2";' or 'syntax = "proto3";' to specify a syntax version. (Defaulted to proto2 syntax.)
-In file included from [01m[K/home/mist/catking_ws/build/pgm_map_creator/msgs/collision_map_request.pb.cc:4[m[K:
-[01m[K/home/mist/catking_ws/build/pgm_map_creator/msgs/collision_map_request.pb.h:33:10:[m[K [01;31m[Kfatal error: [m[Kvector2d.pb.h: No such file or directory
-   33 | #include [01;31m[K"vector2d.pb.h"[m[K
-      |          [01;31m[K^~~~~~~~~~~~~~~[m[K
-compilation terminated.
-make[2]: *** [msgs/CMakeFiles/collision_map_creator_msgs.dir/build.make:71: msgs/CMakeFiles/collision_map_creator_msgs.dir/collision_map_request.pb.cc.o] Error 1
-make[1]: *** [CMakeFiles/Makefile2:911: msgs/CMakeFiles/collision_map_creator_msgs.dir/all] Error 2
-make: *** [Makefile:141: all] Error 2

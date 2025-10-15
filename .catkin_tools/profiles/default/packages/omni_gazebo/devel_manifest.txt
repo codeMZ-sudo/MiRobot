@@ -1,5 +1,0 @@
-gazebo_sim/omni_gazebo
-/home/mist/catking_ws/devel/.private/omni_gazebo/cmake.lock /home/mist/catking_ws/devel/./cmake.lock
-/home/mist/catking_ws/devel/.private/omni_gazebo/lib/pkgconfig/omni_gazebo.pc /home/mist/catking_ws/devel/lib/pkgconfig/omni_gazebo.pc
-/home/mist/catking_ws/devel/.private/omni_gazebo/share/omni_gazebo/cmake/omni_gazeboConfig.cmake /home/mist/catking_ws/devel/share/omni_gazebo/cmake/omni_gazeboConfig.cmake
-/home/mist/catking_ws/devel/.private/omni_gazebo/share/omni_gazebo/cmake/omni_gazeboConfig-version.cmake /home/mist/catking_ws/devel/share/omni_gazebo/cmake/omni_gazeboConfig-version.cmake

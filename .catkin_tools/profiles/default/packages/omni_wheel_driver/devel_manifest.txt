@@ -1,5 +1,0 @@
-gazebo_sim/omni_wheel_driver
-/home/mist/catking_ws/devel/.private/omni_wheel_driver/cmake.lock /home/mist/catking_ws/devel/./cmake.lock
-/home/mist/catking_ws/devel/.private/omni_wheel_driver/lib/pkgconfig/omni_wheel_driver.pc /home/mist/catking_ws/devel/lib/pkgconfig/omni_wheel_driver.pc
-/home/mist/catking_ws/devel/.private/omni_wheel_driver/share/omni_wheel_driver/cmake/omni_wheel_driverConfig-version.cmake /home/mist/catking_ws/devel/share/omni_wheel_driver/cmake/omni_wheel_driverConfig-version.cmake
-/home/mist/catking_ws/devel/.private/omni_wheel_driver/share/omni_wheel_driver/cmake/omni_wheel_driverConfig.cmake /home/mist/catking_ws/devel/share/omni_wheel_driver/cmake/omni_wheel_driverConfig.cmake
