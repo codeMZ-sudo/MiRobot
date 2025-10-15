@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="omni_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+
+    <xacro:include filename="$(find omni_description)/urdf/materials.xacro"/>
+    <xacro:include filename="$(find omni_description)/urdf/inertial_matrix.xacro" />
+
+    <!-- sensors -->
+    <xacro:include filename="$(find omni_description)/urdf/lidar.urdf.xacro"/>
+    <xacro:include filename="$(find omni_description)/urdf/lidar_a2m8.urdf.xacro"/>
+    
+    <!-- Import roller and wheel -->
+    
+    <xacro:include filename="$(find omni_description)/urdf/roller.urdf.xacro"/>
+    <xacro:include filename="$(find omni_description)/urdf/wheel_LF.urdf.xacro"/>
+    <xacro:include filename="$(find omni_description)/urdf/wheel_LR.urdf.xacro"/>
+    <xacro:include filename="$(find omni_description)/urdf/wheel_RF.urdf.xacro"/>
+    <xacro:include filename="$(find omni_description)/urdf/wheel_RR.urdf.xacro"/>
+    
+    <!-- robot -->
+    <xacro:include filename="$(find omni_description)/urdf/robot_description.urdf.xacro"/>
+
+
+</robot>

@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+
+<launch>
+  <!-- Arguments 
+  <arg name="cmd_vel_topic" default="/cmd_vel"/>
+  <remap from="map" to="/map"/>
+  <remap from="odom" to="/odom"/>
+  <remap from="scan" to="/scan"/>-->  
+
+  <!-- TEB Planner -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+  <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+  <remap from="cmd_vel" to="/cmd_vel" />
+  <remap from="map" to="/map" />
+  <remap from="odom" to="/odom" />
+  <remap from="scan" to="/scan" />
+</node>
+  
+  <!-- DWA
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+    <rosparam file="$(find slam_dwa)/param/common_costmap.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find slam_dwa)/param/common_costmap.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find slam_dwa)/param/dwa_planner.yaml" command="load" />
+    <remap from="cmd_vel" to="/cmd_vel"/>
+    <remap from="map" to="/map" />
+    <remap from="odom" to="/odom" />
+    <remap from="scan" to="/scan" />
+    </node>
+    -->
+
+</launch>

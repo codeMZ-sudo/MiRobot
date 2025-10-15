@@ -1,0 +1,60 @@
+[35m[1mScanning dependencies of target _gazebo_omni_plugins_generate_messages_check_deps_gazebo_omni_plugins_vel[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_nodejs[0m
+[35m[1mScanning dependencies of target _gazebo_omni_plugins_generate_messages_check_deps_gazebo_omni_plugins_pid[0m
+[35m[1mScanning dependencies of target gazebo_omni_plugins_gencfg[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_py[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_cpp[0m
+[  4%] Built target std_msgs_generate_messages_py
+[  4%] [34m[1mGenerating dynamic reconfigure files from cfg/gazebo_ros_omni_pid.cfg: /home/mist/catking_ws/devel/.private/gazebo_omni_plugins/include/gazebo_omni_plugins/gazebo_ros_omni_pidConfig.h /home/mist/catking_ws/devel/.private/gazebo_omni_plugins/lib/python3/dist-packages/gazebo_omni_plugins/cfg/gazebo_ros_omni_pidConfig.py[0m
+[  4%] Built target std_msgs_generate_messages_nodejs
+[  4%] Built target std_msgs_generate_messages_cpp
+[35m[1mScanning dependencies of target std_msgs_generate_messages_lisp[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_eus[0m
+[  4%] Built target std_msgs_generate_messages_lisp
+[  4%] Built target std_msgs_generate_messages_eus
+[  4%] Built target _gazebo_omni_plugins_generate_messages_check_deps_gazebo_omni_plugins_pid
+[  4%] Built target _gazebo_omni_plugins_generate_messages_check_deps_gazebo_omni_plugins_vel
+[35m[1mScanning dependencies of target gazebo_omni_plugins_generate_messages_cpp[0m
+[35m[1mScanning dependencies of target gazebo_omni_plugins_generate_messages_nodejs[0m
+[35m[1mScanning dependencies of target gazebo_omni_plugins_generate_messages_py[0m
+[35m[1mScanning dependencies of target gazebo_omni_plugins_generate_messages_lisp[0m
+[35m[1mScanning dependencies of target gazebo_omni_plugins_generate_messages_eus[0m
+[ 22%] [34m[1mGenerating C++ code from gazebo_omni_plugins/gazebo_omni_plugins_vel.msg[0m
+[ 22%] [34m[1mGenerating Python from MSG gazebo_omni_plugins/gazebo_omni_plugins_vel[0m
+[ 22%] [34m[1mGenerating Lisp code from gazebo_omni_plugins/gazebo_omni_plugins_vel.msg[0m
+[ 22%] [34m[1mGenerating Javascript code from gazebo_omni_plugins/gazebo_omni_plugins_vel.msg[0m
+[ 27%] [34m[1mGenerating EusLisp code from gazebo_omni_plugins/gazebo_omni_plugins_vel.msg[0m
+Generating reconfiguration files for gazebo_omni_plugins_pid in gazebo_omni_plugins
+Wrote header file in /home/mist/catking_ws/devel/.private/gazebo_omni_plugins/include/gazebo_omni_plugins/gazebo_omni_plugins_pidConfig.h
+[ 31%] [34m[1mGenerating Lisp code from gazebo_omni_plugins/gazebo_omni_plugins_pid.msg[0m
+[ 36%] [34m[1mGenerating Javascript code from gazebo_omni_plugins/gazebo_omni_plugins_pid.msg[0m
+[ 36%] Built target gazebo_omni_plugins_gencfg
+[ 40%] [34m[1mGenerating Python from MSG gazebo_omni_plugins/gazebo_omni_plugins_pid[0m
+[ 45%] [34m[1mGenerating EusLisp code from gazebo_omni_plugins/gazebo_omni_plugins_pid.msg[0m
+[ 45%] Built target gazebo_omni_plugins_generate_messages_lisp
+[ 45%] Built target gazebo_omni_plugins_generate_messages_nodejs
+[ 50%] [34m[1mGenerating EusLisp manifest code for gazebo_omni_plugins[0m
+[ 54%] [34m[1mGenerating C++ code from gazebo_omni_plugins/gazebo_omni_plugins_pid.msg[0m
+[ 59%] [34m[1mGenerating Python msg __init__.py for gazebo_omni_plugins[0m
+[ 59%] Built target gazebo_omni_plugins_generate_messages_cpp
+[35m[1mScanning dependencies of target gazebo_ros_omni_pid_drive[0m
+[35m[1mScanning dependencies of target gazebo_ros_omni_drive[0m
+[35m[1mScanning dependencies of target gazebo_omni_plugin_pid[0m
+[35m[1mScanning dependencies of target gazebo_ros_omni_drive_ac[0m
+[ 63%] [32mBuilding CXX object CMakeFiles/gazebo_omni_plugin_pid.dir/src/gazebo_ros_omni_pid_param.cpp.o[0m
+[ 63%] Built target gazebo_omni_plugins_generate_messages_py
+[ 63%] Built target gazebo_omni_plugins_generate_messages_eus
+[35m[1mScanning dependencies of target gazebo_omni_plugins_generate_messages[0m
+[ 63%] Built target gazebo_omni_plugins_generate_messages
+[ 68%] [32mBuilding CXX object CMakeFiles/gazebo_ros_omni_drive_ac.dir/src/gazebo_ros_omni_drive_ac.cpp.o[0m
+[ 72%] [32mBuilding CXX object CMakeFiles/gazebo_ros_omni_drive.dir/src/gazebo_ros_omni_drive.cpp.o[0m
+[ 81%] [32mBuilding CXX object CMakeFiles/gazebo_ros_omni_pid_drive.dir/src/gazebo_ros_omni_pid.cpp.o[0m
+[ 81%] [32mBuilding CXX object CMakeFiles/gazebo_ros_omni_pid_drive.dir/src/gazebo_ros_omni_pid_drive.cpp.o[0m
+[ 86%] [32m[1mLinking CXX executable /home/mist/catking_ws/devel/.private/gazebo_omni_plugins/lib/gazebo_omni_plugins/gazebo_omni_plugin_pid[0m
+[ 86%] Built target gazebo_omni_plugin_pid
+[ 90%] [32m[1mLinking CXX shared library /home/mist/catking_ws/devel/.private/gazebo_omni_plugins/lib/libgazebo_ros_omni_drive.so[0m
+[ 95%] [32m[1mLinking CXX shared library /home/mist/catking_ws/devel/.private/gazebo_omni_plugins/lib/libgazebo_ros_omni_drive_ac.so[0m
+[100%] [32m[1mLinking CXX shared library /home/mist/catking_ws/devel/.private/gazebo_omni_plugins/lib/libgazebo_ros_omni_pid_drive.so[0m
+[100%] Built target gazebo_ros_omni_drive
+[100%] Built target gazebo_ros_omni_drive_ac
+[100%] Built target gazebo_ros_omni_pid_drive

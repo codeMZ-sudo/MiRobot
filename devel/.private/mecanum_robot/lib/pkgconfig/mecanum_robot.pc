@@ -1,0 +1,8 @@
+prefix=/home/mist/catking_ws/devel/.private/mecanum_robot
+
+Name: mecanum_robot
+Description: Description of mecanum_robot
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

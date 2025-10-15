@@ -1,0 +1,8 @@
+prefix=/home/mist/catking_ws/install
+
+Name: gazebo_omni_plugins
+Description: Description of gazebo_omni_plugins
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lgazebo_omni_plugins
+Requires: nav_msgs geometry_msgs joint_state_controller robot_state_publisher roscpp std_msgs tf

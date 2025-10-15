@@ -1,0 +1,16 @@
+astar_global_planner:
+  # Map parameters
+  map_file: "$(find mecanum_astar_planner)/maps/scan_full_joined.yaml"
+  
+  # Heuristic type: "euclidean" or "manhattan"
+  heuristic_type: "manhattan"       <!-- manhattan, euclidean -->
+  
+  # Obstacle inflation radius (meters)
+  inflation_radius: 0.20
+  
+  # Publishing
+  publish_rate: 1.0  # Hz
+  
+  # Path optimization
+  smooth_path: true
+  smoothing_iterations: 100

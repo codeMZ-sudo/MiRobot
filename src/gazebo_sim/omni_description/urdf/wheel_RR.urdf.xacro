@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<robot name="omni_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:property name="wheel_link_mass"    value="0.550" />
+  <xacro:property name="wheel_link_radius"  value="0.0575"/>
+  <xacro:property name="wheel_link_length"  value="0.06"/>
+   
+  <xacro:macro name="zm_wheel_v4" params="prefix parent origin_x origin_y origin_z rotation_x">
+	<joint name="wheel_joint_${prefix}" type="continuous">
+	  <parent link="${parent}"/>
+	  <child link="wheel_${prefix}"/>
+	  <origin xyz="${origin_x} ${origin_y} ${origin_z}" rpy="${rotation_x} 0 0"/>
+      <axis xyz="0 0 1"/>
+	  <dynamics damping="0.0" friction="0.0"/>
+	</joint>
+
+	<link name="wheel_${prefix}">
+	  <visual>
+	       <origin xyz="0 0 0" rpy="0 0 0"/>
+		<geometry>
+		  <mesh filename="package://omni_description/meshes/Wheel_frame.stl" scale="0.001 0.001 0.001"/>
+		</geometry>
+		<material name="dark_grey"/>
+	  </visual>
+	  <collision>
+	       <origin xyz="0 0 0" rpy="0 0 0"/>
+		<geometry>
+		  <mesh filename="package://omni_description/meshes/Wheel_frame.stl" scale="0.001 0.001 0.001"/>
+		</geometry>
+	  </collision>
+
+       <xacro:cylinder_inertial m="${wheel_link_mass}" r="${wheel_link_radius}" h="${wheel_link_length}" />
+	</link>
+  </xacro:macro>
+</robot>

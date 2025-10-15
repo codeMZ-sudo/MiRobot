@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="omni_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:include filename="$(find omni_description)/urdf/omni.xacro"/>
+    <xacro:include filename="$(find omni_description)/urdf/omni.gazebo.xacro"/>
+</robot>

@@ -1,0 +1,4668 @@
+<sdf version='1.7'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='map'>
+      <link name='link'>
+        <inertial>
+          <mass>15</mass>
+          <inertia>
+            <ixx>0</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0</iyy>
+            <iyz>0</iyz>
+            <izz>0</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://map/meshes/scan_full_joined.stl</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://map/meshes/scan_full_joined.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <wind/>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='robot'>
+      <link name='base_footprint'>
+        <inertial>
+          <pose>7.6e-05 -8e-05 0.116888 0 -0 0</pose>
+          <mass>30.69</mass>
+          <inertia>
+            <ixx>0.683783</ixx>
+            <ixy>3.02411e-05</ixy>
+            <ixz>-0.000708142</ixz>
+            <iyy>0.359721</iyy>
+            <iyz>0.000748673</iyz>
+            <izz>0.946862</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_footprint_fixed_joint_lump__base_link_collision'>
+          <pose>0 0 0.115 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/robot_frame.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+30</kp>
+                <kd>1e+20</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>100</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='base_footprint_fixed_joint_lump__lidar_link_collision_1'>
+          <pose>0.0123 -0.013 0.42 1.5708 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/lidar.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+30</kp>
+                <kd>1e+20</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>100</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='base_footprint_fixed_joint_lump__base_link_visual'>
+          <pose>0 0 0.115 -1.5708 -0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/robot_frame.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_footprint_fixed_joint_lump__lidar_link_visual_1'>
+          <pose>0.0123 -0.013 0.42 1.5708 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/lidar.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <sensor name='lidar' type='ray'>
+          <visualize>0</visualize>
+          <update_rate>15</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>360</samples>
+                <resolution>1</resolution>
+                <min_angle>0</min_angle>
+                <max_angle>6.2832</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>1</samples>
+                <min_angle>0</min_angle>
+                <max_angle>0</max_angle>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.15</min>
+              <max>12</max>
+              <resolution>0.015</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.01</stddev>
+            </noise>
+          </ray>
+          <plugin name='gazebo_rplidar' filename='libgazebo_ros_laser.so'>
+            <topicName>scan</topicName>
+            <frameName>lidar_frame</frameName>
+            <robotNamespace>/</robotNamespace>
+          </plugin>
+          <pose>0.0123 -0.013 0.42 0 -0 0</pose>
+        </sensor>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='wheel_joint_1' type='revolute'>
+        <pose relative_to='base_footprint'>-0.11 0.28 0.0755 -1.5708 0 0</pose>
+        <parent>base_footprint</parent>
+        <child>wheel_1</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='wheel_1'>
+        <pose relative_to='wheel_joint_1'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.55</mass>
+          <inertia>
+            <ixx>0.000619609</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000619609</iyy>
+            <iyz>0</iyz>
+            <izz>0.000909219</izz>
+          </inertia>
+        </inertial>
+        <collision name='wheel_1_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/Wheel_frame.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+90</kp>
+                <kd>1e+90</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>30</mu>
+                <mu2>30</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='wheel_1_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/Wheel_frame.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='roller_1_10_joint' type='revolute'>
+        <pose relative_to='wheel_1'>0.050564 -0.036737 0 0.7854 -0 -0.628285</pose>
+        <parent>wheel_1</parent>
+        <child>roller_1_10</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_1_10'>
+        <pose relative_to='roller_1_10_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_1_10_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_1_10_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_1_1_joint' type='revolute'>
+        <pose relative_to='wheel_1'>0.0625 0 0 0.7854 -0 0</pose>
+        <parent>wheel_1</parent>
+        <child>roller_1_1</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_1_1'>
+        <pose relative_to='roller_1_1_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_1_1_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_1_1_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_1_2_joint' type='revolute'>
+        <pose relative_to='wheel_1'>0.050564 0.036737 0 0.7854 0 0.6283</pose>
+        <parent>wheel_1</parent>
+        <child>roller_1_2</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_1_2'>
+        <pose relative_to='roller_1_2_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_1_2_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_1_2_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_1_3_joint' type='revolute'>
+        <pose relative_to='wheel_1'>0.019314 0.059441 0 0.7854 -0 1.2566</pose>
+        <parent>wheel_1</parent>
+        <child>roller_1_3</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_1_3'>
+        <pose relative_to='roller_1_3_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_1_3_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_1_3_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_1_4_joint' type='revolute'>
+        <pose relative_to='wheel_1'>-0.019314 0.059441 0 0.7854 -0 1.8849</pose>
+        <parent>wheel_1</parent>
+        <child>roller_1_4</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_1_4'>
+        <pose relative_to='roller_1_4_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_1_4_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_1_4_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_1_5_joint' type='revolute'>
+        <pose relative_to='wheel_1'>-0.050564 0.036737 0 0.7854 -0 2.5133</pose>
+        <parent>wheel_1</parent>
+        <child>roller_1_5</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_1_5'>
+        <pose relative_to='roller_1_5_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_1_5_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_1_5_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_1_6_joint' type='revolute'>
+        <pose relative_to='wheel_1'>-0.0625 0 0 0.7854 -0 -3.14159</pose>
+        <parent>wheel_1</parent>
+        <child>roller_1_6</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_1_6'>
+        <pose relative_to='roller_1_6_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_1_6_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_1_6_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_1_7_joint' type='revolute'>
+        <pose relative_to='wheel_1'>-0.050564 -0.036737 0 0.7854 0 -2.51329</pose>
+        <parent>wheel_1</parent>
+        <child>roller_1_7</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_1_7'>
+        <pose relative_to='roller_1_7_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_1_7_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_1_7_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_1_8_joint' type='revolute'>
+        <pose relative_to='wheel_1'>-0.019314 -0.059441 0 0.7854 0 -1.88498</pose>
+        <parent>wheel_1</parent>
+        <child>roller_1_8</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_1_8'>
+        <pose relative_to='roller_1_8_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_1_8_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_1_8_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_1_9_joint' type='revolute'>
+        <pose relative_to='wheel_1'>0.019314 -0.059441 0 0.7854 0 -1.25669</pose>
+        <parent>wheel_1</parent>
+        <child>roller_1_9</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_1_9'>
+        <pose relative_to='roller_1_9_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_1_9_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_1_9_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='wheel_joint_2' type='revolute'>
+        <pose relative_to='base_footprint'>0.11 0.28 0.0755 -1.5708 0 0</pose>
+        <parent>base_footprint</parent>
+        <child>wheel_2</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='wheel_2'>
+        <pose relative_to='wheel_joint_2'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.55</mass>
+          <inertia>
+            <ixx>0.000619609</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000619609</iyy>
+            <iyz>0</iyz>
+            <izz>0.000909219</izz>
+          </inertia>
+        </inertial>
+        <collision name='wheel_2_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/Wheel_frame.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+90</kp>
+                <kd>1e+90</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>30</mu>
+                <mu2>30</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='wheel_2_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/Wheel_frame.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='roller_2_10_joint' type='revolute'>
+        <pose relative_to='wheel_2'>0.050564 -0.036737 0 -0.7854 0 -0.628285</pose>
+        <parent>wheel_2</parent>
+        <child>roller_2_10</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_2_10'>
+        <pose relative_to='roller_2_10_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_2_10_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_2_10_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_2_1_joint' type='revolute'>
+        <pose relative_to='wheel_2'>0.0625 0 0 -0.7854 0 0</pose>
+        <parent>wheel_2</parent>
+        <child>roller_2_1</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_2_1'>
+        <pose relative_to='roller_2_1_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_2_1_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_2_1_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_2_2_joint' type='revolute'>
+        <pose relative_to='wheel_2'>0.050564 0.036737 0 -0.7854 -0 0.6283</pose>
+        <parent>wheel_2</parent>
+        <child>roller_2_2</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_2_2'>
+        <pose relative_to='roller_2_2_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_2_2_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_2_2_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_2_3_joint' type='revolute'>
+        <pose relative_to='wheel_2'>0.019314 0.059441 0 -0.7854 -0 1.2566</pose>
+        <parent>wheel_2</parent>
+        <child>roller_2_3</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_2_3'>
+        <pose relative_to='roller_2_3_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_2_3_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_2_3_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_2_4_joint' type='revolute'>
+        <pose relative_to='wheel_2'>-0.019314 0.059441 0 -0.7854 -0 1.8849</pose>
+        <parent>wheel_2</parent>
+        <child>roller_2_4</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_2_4'>
+        <pose relative_to='roller_2_4_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_2_4_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_2_4_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_2_5_joint' type='revolute'>
+        <pose relative_to='wheel_2'>-0.050564 0.036737 0 -0.7854 -0 2.5133</pose>
+        <parent>wheel_2</parent>
+        <child>roller_2_5</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_2_5'>
+        <pose relative_to='roller_2_5_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_2_5_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_2_5_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_2_6_joint' type='revolute'>
+        <pose relative_to='wheel_2'>-0.0625 0 0 -0.7854 -0 -3.14159</pose>
+        <parent>wheel_2</parent>
+        <child>roller_2_6</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_2_6'>
+        <pose relative_to='roller_2_6_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_2_6_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_2_6_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_2_7_joint' type='revolute'>
+        <pose relative_to='wheel_2'>-0.050564 -0.036737 0 -0.7854 -0 -2.51329</pose>
+        <parent>wheel_2</parent>
+        <child>roller_2_7</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_2_7'>
+        <pose relative_to='roller_2_7_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_2_7_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_2_7_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_2_8_joint' type='revolute'>
+        <pose relative_to='wheel_2'>-0.019314 -0.059441 0 -0.7854 -0 -1.88498</pose>
+        <parent>wheel_2</parent>
+        <child>roller_2_8</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_2_8'>
+        <pose relative_to='roller_2_8_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_2_8_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_2_8_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_2_9_joint' type='revolute'>
+        <pose relative_to='wheel_2'>0.019314 -0.059441 0 -0.7854 -0 -1.25669</pose>
+        <parent>wheel_2</parent>
+        <child>roller_2_9</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_2_9'>
+        <pose relative_to='roller_2_9_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_2_9_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_2_9_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='wheel_joint_3' type='revolute'>
+        <pose relative_to='base_footprint'>0.11 -0.28 0.0755 -1.5708 0 0</pose>
+        <parent>base_footprint</parent>
+        <child>wheel_3</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='wheel_3'>
+        <pose relative_to='wheel_joint_3'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.55</mass>
+          <inertia>
+            <ixx>0.000619609</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000619609</iyy>
+            <iyz>0</iyz>
+            <izz>0.000909219</izz>
+          </inertia>
+        </inertial>
+        <collision name='wheel_3_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/Wheel_frame.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+90</kp>
+                <kd>1e+90</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>30</mu>
+                <mu2>30</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='wheel_3_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/Wheel_frame.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='roller_3_10_joint' type='revolute'>
+        <pose relative_to='wheel_3'>0.050564 -0.036737 0 0.7854 -0 -0.628285</pose>
+        <parent>wheel_3</parent>
+        <child>roller_3_10</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_3_10'>
+        <pose relative_to='roller_3_10_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_3_10_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_3_10_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_3_1_joint' type='revolute'>
+        <pose relative_to='wheel_3'>0.0625 0 0 0.7854 -0 0</pose>
+        <parent>wheel_3</parent>
+        <child>roller_3_1</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_3_1'>
+        <pose relative_to='roller_3_1_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_3_1_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_3_1_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_3_2_joint' type='revolute'>
+        <pose relative_to='wheel_3'>0.050564 0.036737 0 0.7854 0 0.6283</pose>
+        <parent>wheel_3</parent>
+        <child>roller_3_2</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_3_2'>
+        <pose relative_to='roller_3_2_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_3_2_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_3_2_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_3_3_joint' type='revolute'>
+        <pose relative_to='wheel_3'>0.019314 0.059441 0 0.7854 -0 1.2566</pose>
+        <parent>wheel_3</parent>
+        <child>roller_3_3</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_3_3'>
+        <pose relative_to='roller_3_3_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_3_3_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_3_3_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_3_4_joint' type='revolute'>
+        <pose relative_to='wheel_3'>-0.019314 0.059441 0 0.7854 -0 1.8849</pose>
+        <parent>wheel_3</parent>
+        <child>roller_3_4</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_3_4'>
+        <pose relative_to='roller_3_4_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_3_4_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_3_4_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_3_5_joint' type='revolute'>
+        <pose relative_to='wheel_3'>-0.050564 0.036737 0 0.7854 -0 2.5133</pose>
+        <parent>wheel_3</parent>
+        <child>roller_3_5</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_3_5'>
+        <pose relative_to='roller_3_5_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_3_5_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_3_5_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_3_6_joint' type='revolute'>
+        <pose relative_to='wheel_3'>-0.0625 0 0 0.7854 -0 -3.14159</pose>
+        <parent>wheel_3</parent>
+        <child>roller_3_6</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_3_6'>
+        <pose relative_to='roller_3_6_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_3_6_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_3_6_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_3_7_joint' type='revolute'>
+        <pose relative_to='wheel_3'>-0.050564 -0.036737 0 0.7854 0 -2.51329</pose>
+        <parent>wheel_3</parent>
+        <child>roller_3_7</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_3_7'>
+        <pose relative_to='roller_3_7_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_3_7_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_3_7_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_3_8_joint' type='revolute'>
+        <pose relative_to='wheel_3'>-0.019314 -0.059441 0 0.7854 0 -1.88498</pose>
+        <parent>wheel_3</parent>
+        <child>roller_3_8</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_3_8'>
+        <pose relative_to='roller_3_8_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_3_8_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_3_8_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_3_9_joint' type='revolute'>
+        <pose relative_to='wheel_3'>0.019314 -0.059441 0 0.7854 0 -1.25669</pose>
+        <parent>wheel_3</parent>
+        <child>roller_3_9</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_3_9'>
+        <pose relative_to='roller_3_9_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_3_9_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_3_9_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='wheel_joint_4' type='revolute'>
+        <pose relative_to='base_footprint'>-0.11 -0.28 0.0755 -1.5708 0 0</pose>
+        <parent>base_footprint</parent>
+        <child>wheel_4</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='wheel_4'>
+        <pose relative_to='wheel_joint_4'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.55</mass>
+          <inertia>
+            <ixx>0.000619609</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000619609</iyy>
+            <iyz>0</iyz>
+            <izz>0.000909219</izz>
+          </inertia>
+        </inertial>
+        <collision name='wheel_4_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/Wheel_frame.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+90</kp>
+                <kd>1e+90</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>30</mu>
+                <mu2>30</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='wheel_4_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/Wheel_frame.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='roller_4_10_joint' type='revolute'>
+        <pose relative_to='wheel_4'>0.050564 -0.036737 0 -0.7854 0 -0.628285</pose>
+        <parent>wheel_4</parent>
+        <child>roller_4_10</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_4_10'>
+        <pose relative_to='roller_4_10_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_4_10_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_4_10_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_4_1_joint' type='revolute'>
+        <pose relative_to='wheel_4'>0.0625 0 0 -0.7854 0 0</pose>
+        <parent>wheel_4</parent>
+        <child>roller_4_1</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_4_1'>
+        <pose relative_to='roller_4_1_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_4_1_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_4_1_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_4_2_joint' type='revolute'>
+        <pose relative_to='wheel_4'>0.050564 0.036737 0 -0.7854 -0 0.6283</pose>
+        <parent>wheel_4</parent>
+        <child>roller_4_2</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_4_2'>
+        <pose relative_to='roller_4_2_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_4_2_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_4_2_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_4_3_joint' type='revolute'>
+        <pose relative_to='wheel_4'>0.019314 0.059441 0 -0.7854 -0 1.2566</pose>
+        <parent>wheel_4</parent>
+        <child>roller_4_3</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_4_3'>
+        <pose relative_to='roller_4_3_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_4_3_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_4_3_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_4_4_joint' type='revolute'>
+        <pose relative_to='wheel_4'>-0.019314 0.059441 0 -0.7854 -0 1.8849</pose>
+        <parent>wheel_4</parent>
+        <child>roller_4_4</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_4_4'>
+        <pose relative_to='roller_4_4_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_4_4_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_4_4_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_4_5_joint' type='revolute'>
+        <pose relative_to='wheel_4'>-0.050564 0.036737 0 -0.7854 -0 2.5133</pose>
+        <parent>wheel_4</parent>
+        <child>roller_4_5</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_4_5'>
+        <pose relative_to='roller_4_5_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_4_5_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_4_5_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_4_6_joint' type='revolute'>
+        <pose relative_to='wheel_4'>-0.0625 0 0 -0.7854 -0 -3.14159</pose>
+        <parent>wheel_4</parent>
+        <child>roller_4_6</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_4_6'>
+        <pose relative_to='roller_4_6_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_4_6_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_4_6_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_4_7_joint' type='revolute'>
+        <pose relative_to='wheel_4'>-0.050564 -0.036737 0 -0.7854 -0 -2.51329</pose>
+        <parent>wheel_4</parent>
+        <child>roller_4_7</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_4_7'>
+        <pose relative_to='roller_4_7_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_4_7_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_4_7_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_4_8_joint' type='revolute'>
+        <pose relative_to='wheel_4'>-0.019314 -0.059441 0 -0.7854 -0 -1.88498</pose>
+        <parent>wheel_4</parent>
+        <child>roller_4_8</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_4_8'>
+        <pose relative_to='roller_4_8_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_4_8_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_4_8_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <joint name='roller_4_9_joint' type='revolute'>
+        <pose relative_to='wheel_4'>0.019314 -0.059441 0 -0.7854 -0 -1.25669</pose>
+        <parent>wheel_4</parent>
+        <child>roller_4_9</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='roller_4_9'>
+        <pose relative_to='roller_4_9_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.0347</mass>
+          <inertia>
+            <ixx>2.31e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.31e-05</iyy>
+            <iyz>0</iyz>
+            <izz>9.5e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='roller_4_9_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.2</mu>
+                <mu2>1.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='roller_4_9_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.009 0.009 0.009</scale>
+              <uri>/home/mist/catking_ws/src/gazebo_sim/omni_description/meshes/mecanum_roller.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+        <bounce>0.0</bounce>
+      </link>
+      <plugin name='mecanum_omnidirectional_drive_ac' filename='libgazebo_ros_omni_drive_ac.so'>
+        <commandTopic>gazebo_cmd_vel</commandTopic>
+        <commandWheelVelTopic>gazebo_wheel_cmd_sim</commandWheelVelTopic>
+        <odometryTopic>odom</odometryTopic>
+        <publishOdom>1</publishOdom>
+        <odometryFrame>odom</odometryFrame>
+        <wheelSpeedTopic>gazebo_wheel_speed_sim</wheelSpeedTopic>
+        <robotBaseFrame>base_footprint</robotBaseFrame>
+        <LeftRear>wheel_joint_1</LeftRear>
+        <LeftFront>wheel_joint_2</LeftFront>
+        <RightFront>wheel_joint_3</RightFront>
+        <RightRear>wheel_joint_4</RightRear>
+        <odometryRate>100</odometryRate>
+        <publishWheelTF>0</publishWheelTF>
+        <publishWheelJointState>1</publishWheelJointState>
+        <WheelTorque>15</WheelTorque>
+        <WheelSeparationW>0.56</WheelSeparationW>
+        <WheelSeparationL>0.22</WheelSeparationL>
+        <wheelAccel>20</wheelAccel>
+        <wheelDiameter>0.15</wheelDiameter>
+        <publishOdom>1</publishOdom>
+        <isRollerModel>1</isRollerModel>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <frame name='lidar_frame_joint' attached_to='lidar_link'>
+        <pose>0 0 0 0 -0 0</pose>
+      </frame>
+      <frame name='lidar_frame' attached_to='lidar_frame_joint'/>
+      <frame name='lidar_joint' attached_to='base_link'>
+        <pose>0.0123 -0.013 0.305 0 -0 0</pose>
+      </frame>
+      <frame name='lidar_link' attached_to='lidar_joint'/>
+      <frame name='base_joint' attached_to='base_footprint'>
+        <pose>0 0 0.115 0 -0 0</pose>
+      </frame>
+      <frame name='base_link' attached_to='base_joint'/>
+      <pose>0 0 0 0 -0 0</pose>
+    </model>
+    <model name='unit_cylinder'>
+      <pose>3.2917 1.05678 0.5 0 -0 0</pose>
+      <link name='link'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.145833</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.145833</iyy>
+            <iyz>0</iyz>
+            <izz>0.125</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.500001</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.500001</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='unit_cylinder_clone'>
+      <pose>4.97192 4.84754 0.499999 -0 -0 -2e-06</pose>
+      <link name='link'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.145833</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.145833</iyy>
+            <iyz>0</iyz>
+            <izz>0.125</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.196535</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.196535</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='unit_cylinder_clone_0'>
+      <pose>8.02991 5.55039 0.499999 0 0 -1e-06</pose>
+      <link name='link'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.145833</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.145833</iyy>
+            <iyz>0</iyz>
+            <izz>0.125</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.196535</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.196535</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='unit_cylinder_clone_1'>
+      <pose>11.4589 4.9716 0.499999 0 0 -1e-06</pose>
+      <link name='link'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.145833</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.145833</iyy>
+            <iyz>0</iyz>
+            <izz>0.125</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.196535</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.196535</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='unit_cylinder_clone_2'>
+      <pose>10.6061 11.7687 0.499991 -0 -0 -1e-06</pose>
+      <link name='link'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.145833</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.145833</iyy>
+            <iyz>0</iyz>
+            <izz>0.125</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.196535</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.196535</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='unit_cylinder_clone_3'>
+      <pose>11.1289 15.281 0.5 0 0 -1e-06</pose>
+      <link name='link'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.145833</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.145833</iyy>
+            <iyz>0</iyz>
+            <izz>0.125</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.196535</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.196535</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='unit_cylinder_clone_4'>
+      <pose>6.77708 14.5566 0.499999 0 0 -1e-06</pose>
+      <link name='link'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.145833</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.145833</iyy>
+            <iyz>0</iyz>
+            <izz>0.125</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.196535</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.196535</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <light name='user_point_light_0' type='point'>
+      <pose>11.1154 15.3528 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>0</cast_shadows>
+      <direction>0 0 -1</direction>
+    </light>
+    <light name='user_point_light_1' type='point'>
+      <pose>11.342 4.92593 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>0</cast_shadows>
+      <direction>0 0 -1</direction>
+    </light>
+    <state world_name='default'>
+      <sim_time>216 517000000</sim_time>
+      <real_time>362 661312081</real_time>
+      <wall_time>1759936142 40201710</wall_time>
+      <iterations>216517</iterations>
+      <model name='ground_plane'>
+        <pose>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='map'>
+        <pose>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='robot'>
+        <pose>4.40951 15.3058 0.000886 -0.000979 -0.000357 3.12922</pose>
+        <scale>1 1 1</scale>
+        <link name='base_footprint'>
+          <pose>4.40951 15.3058 0.000886 -0.000979 -0.000357 3.12922</pose>
+          <velocity>0.001384 -0.000973 -0.001373 -0.010778 -0.013005 -0.000343</velocity>
+          <acceleration>-0.155242 -0.246546 -0.069231 -0.142667 0.818251 0.367724</acceleration>
+          <wrench>-4.76436 -7.56649 -2.1247 0 -0 0</wrench>
+        </link>
+        <link name='roller_1_1'>
+          <pose>4.45545 15.0251 0.091266 -0.725469 0.413263 -2.49055</pose>
+          <velocity>0.000146 -4.8e-05 0.002269 -0.010999 -0.010756 -8.1e-05</velocity>
+          <acceleration>-0.07566 -0.242764 -0.088071 0.298714 -0.242808 0.945114</acceleration>
+          <wrench>-0.002625 -0.008424 -0.003056 0 -0 0</wrench>
+        </link>
+        <link name='roller_1_10'>
+          <pose>4.47595 15.0248 0.124001 1.04989 -0.425839 0.874171</pose>
+          <velocity>-0.000199 0.000309 0.00249 -0.010921 -0.010752 -9.2e-05</velocity>
+          <acceleration>-0.054175 -0.233349 -0.096701 0.104479 0.576746 0.151313</acceleration>
+          <wrench>-0.00188 -0.008097 -0.003356 0 -0 0</wrench>
+        </link>
+        <link name='roller_1_2'>
+          <pose>4.4581 15.0251 0.05273 0.470354 0.745078 -1.29696</pose>
+          <velocity>0.000554 -0.000473 0.002299 -0.011088 -0.010795 -3.4e-05</velocity>
+          <acceleration>-0.096878 -0.239579 -0.092251 -0.423738 -0.889427 1.49572</acceleration>
+          <wrench>-0.003362 -0.008313 -0.003201 0 -0 0</wrench>
+        </link>
+        <link name='roller_1_3'>
+          <pose>4.48289 15.0248 0.023112 1.01103 -0.787416 -0.297276</pose>
+          <velocity>0.000865 -0.000806 0.002568 -0.011263 -0.010856 -3e-05</velocity>
+          <acceleration>-0.1135 -0.22553 -0.105949 -1.33253 -1.14432 1.05987</acceleration>
+          <wrench>-0.003938 -0.007826 -0.003676 0 -0 0</wrench>
+        </link>
+        <link name='roller_1_4'>
+          <pose>4.52036 15.0244 0.013801 -1.61874 -0.05845 2.34748</pose>
+          <velocity>0.000822 -0.001596 0.00093 0.125639 0.071989 0.014366</velocity>
+          <acceleration>0.00393 -0.113329 -0.217446 -1.89362 0.762794 -1.83177</acceleration>
+          <wrench>0.000136 -0.003933 -0.007545 0 -0 0</wrench>
+        </link>
+        <link name='roller_1_5'>
+          <pose>4.55619 15.0239 0.028148 2.39167 -0.900414 -1.3662</pose>
+          <velocity>0.000796 -0.000721 0.003509 -0.011291 -0.010887 -0.000791</velocity>
+          <acceleration>-0.141123 -0.211191 -0.153954 -0.903586 0.108616 -0.136931</acceleration>
+          <wrench>-0.004897 -0.007328 -0.005342 0 -0 0</wrench>
+        </link>
+        <link name='roller_1_6'>
+          <pose>4.57669 15.0236 0.060884 2.78973 0.7504 0.825948</pose>
+          <velocity>0.000463 -0.000381 0.003727 -0.010899 -0.010803 -0.000946</velocity>
+          <acceleration>-0.111946 -0.196432 -0.177654 -0.278529 1.05427 0.635406</acceleration>
+          <wrench>-0.003885 -0.006816 -0.006165 0 -0 0</wrench>
+        </link>
+        <link name='roller_1_7'>
+          <pose>4.57404 15.0236 0.09942 -2.29034 0.085897 -2.87119</pose>
+          <velocity>6.3e-05 3e-05 0.003709 -0.010606 -0.010707 -0.000783</velocity>
+          <acceleration>-0.072962 -0.190137 -0.178306 2.60516 1.47071 -1.97249</acceleration>
+          <wrench>-0.002532 -0.006598 -0.006187 0 -0 0</wrench>
+        </link>
+        <link name='roller_1_8'>
+          <pose>4.54924 15.0239 0.129037 1.9787 0.323702 0.827498</pose>
+          <velocity>-0.000252 0.000356 0.003458 -0.010562 -0.010647 -0.000557</velocity>
+          <acceleration>-0.043255 -0.194724 -0.153651 2.3406 1.47298 -2.4391</acceleration>
+          <wrench>-0.001501 -0.006757 -0.005332 0 -0 0</wrench>
+        </link>
+        <link name='roller_1_9'>
+          <pose>4.51178 15.0244 0.138424 -1.43288 1.21562 -2.24036</pose>
+          <velocity>-0.000357 0.000472 0.003064 -0.010628 -0.010658 -0.000448</velocity>
+          <acceleration>-0.037222 -0.208492 -0.11528 -0.466365 1.25461 0.090519</acceleration>
+          <wrench>-0.001292 -0.007235 -0.004 0 -0 0</wrench>
+        </link>
+        <link name='roller_2_1'>
+          <pose>4.35104 15.0264 0.046403 0.173025 0.8885 -0.917573</pose>
+          <velocity>0.000461 -0.000802 0.000598 -0.009168 -0.023574 0.011193</velocity>
+          <acceleration>-0.886295 -1.71392 -0.868016 2.97344 1.50002 0.563983</acceleration>
+          <wrench>-0.030754 -0.059473 -0.03012 0 -0 0</wrench>
+        </link>
+        <link name='roller_2_10'>
+          <pose>4.3231 15.0267 0.019807 1.07039 0.879989 0.322408</pose>
+          <velocity>5.3e-05 0.000228 -0.000528 -0.017104 0.009031 -0.006294</velocity>
+          <acceleration>-1.63577 -1.77447 -0.402381 -1.61032 -0.760142 -1.34884</acceleration>
+          <wrench>-0.056761 -0.061574 -0.013963 0 -0 0</wrench>
+        </link>
+        <link name='roller_2_2'>
+          <pose>4.35803 15.0263 0.084392 -0.142529 0.784847 -1.91425</pose>
+          <velocity>0.000127 -0.000204 0.000661 -0.016714 -0.014044 0.003549</velocity>
+          <acceleration>-0.379214 -0.694201 -0.956858 -0.486733 1.5437 -2.05828</acceleration>
+          <wrench>-0.013159 -0.024089 -0.033203 0 -0 0</wrench>
+        </link>
+        <link name='roller_2_3'>
+          <pose>4.34137 15.0265 0.119237 -0.607581 -0.897829 1.68214</pose>
+          <velocity>-0.00018 0.000382 0.000511 -0.012993 -0.00459 -0.004696</velocity>
+          <acceleration>0.083784 0.282523 -0.736471 -1.8068 0.910779 -0.128271</acceleration>
+          <wrench>0.002907 0.009804 -0.025556 0 -0 0</wrench>
+        </link>
+        <link name='roller_2_4'>
+          <pose>4.3074 15.0269 0.137631 -1.25748 1.14437 2.63909</pose>
+          <velocity>-0.000347 0.000734 0.000206 -0.005831 0.001246 -0.00345</velocity>
+          <acceleration>0.325044 0.84599 -0.293575 -1.45706 -0.999363 1.14049</acceleration>
+          <wrench>0.011279 0.029356 -0.010187 0 -0 0</wrench>
+        </link>
+        <link name='roller_2_5'>
+          <pose>4.26911 15.0274 0.132546 -1.98337 0.703443 2.11916</pose>
+          <velocity>-0.00031 0.000718 -0.000143 -0.006547 0.001339 0.002877</velocity>
+          <acceleration>0.253207 0.785904 0.200019 -2.13054 -0.90308 -1.43568</acceleration>
+          <wrench>0.008786 0.027271 0.006941 0 -0 0</wrench>
+        </link>
+        <link name='roller_2_6'>
+          <pose>4.24113 15.0277 0.105925 2.25516 0.175818 -0.315328</pose>
+          <velocity>-7.7e-05 0.000341 -0.000407 -0.01379 -0.004359 0.002493</velocity>
+          <acceleration>-0.100799 0.130323 0.55577 2.21584 1.3269 2.80039</acceleration>
+          <wrench>-0.003498 0.004522 0.019285 0 -0 0</wrench>
+        </link>
+        <link name='roller_2_7'>
+          <pose>4.23413 15.0279 0.067937 -2.38934 -0.280617 -2.73525</pose>
+          <velocity>0.000269 -0.000253 -0.000482 -0.015561 -0.013795 -0.006328</velocity>
+          <acceleration>-0.599542 -0.866839 0.641014 2.84552 0.00867 2.73913</acceleration>
+          <wrench>-0.020804 -0.030079 0.022243 0 -0 0</wrench>
+        </link>
+        <link name='roller_2_8'>
+          <pose>4.2508 15.0277 0.033092 2.72296 -0.974588 -0.486105</pose>
+          <velocity>0.000592 -0.000836 -0.000333 -0.006561 -0.023444 -0.012027</velocity>
+          <acceleration>-1.05581 -1.82372 0.42606 2.36654 1.249 0.370813</acceleration>
+          <wrench>-0.036637 -0.063283 0.014784 0 -0 0</wrench>
+        </link>
+        <link name='roller_2_9'>
+          <pose>4.28472 15.0273 0.01492 -1.77854 0.920902 -2.54366</pose>
+          <velocity>-0.00211 -0.002453 -0.001209 0.236282 -0.19863 -0.096126</velocity>
+          <acceleration>-9.62774 -10.2301 -3.1218 -0.205423 0.114262 -2.93887</acceleration>
+          <wrench>-0.334082 -0.354984 -0.108326 0 -0 0</wrench>
+        </link>
+        <link name='roller_3_1'>
+          <pose>4.28552 15.5872 0.016717 1.36106 -0.304305 -0.713433</pose>
+          <velocity>0.032269 0.026773 -0.015087 0.78081 -0.209753 -0.201099</velocity>
+          <acceleration>-0.521797 -0.369003 0.055112 -1.93231 0.834528 1.33556</acceleration>
+          <wrench>-0.018106 -0.012804 0.001912 0 -0 0</wrench>
+        </link>
+        <link name='roller_3_10'>
+          <pose>4.2537 15.5877 0.038313 -0.778589 0.671659 3.14155</pose>
+          <velocity>0.002258 0.001832 -0.008597 0.016974 -0.035423 -0.017953</velocity>
+          <acceleration>-0.3089 -0.245894 0.02491 0.933642 -0.472671 1.26749</acceleration>
+          <wrench>-0.010719 -0.008533 0.000864 0 -0 0</wrench>
+        </link>
+        <link name='roller_3_2'>
+          <pose>4.32449 15.587 0.018038 1.97796 -0.907318 -1.09401</pose>
+          <velocity>-0.005467 -0.00385 -0.015982 -0.116422 -0.470873 -0.246256</velocity>
+          <acceleration>-0.415448 0.205048 0.024957 -0.398515 0.663253 2.85233</acceleration>
+          <wrench>-0.014416 0.007115 0.000866 0 -0 0</wrench>
+        </link>
+        <link name='roller_3_3'>
+          <pose>4.35476 15.5864 0.041661 2.25211 0.374104 -0.235663</pose>
+          <velocity>0.000758 -0.000629 -0.004849 -0.025758 -0.023648 -0.004933</velocity>
+          <acceleration>-0.364307 -0.310447 -0.124909 3.08143 0.031303 -1.65157</acceleration>
+          <wrench>-0.012641 -0.010772 -0.004334 0 -0 0</wrench>
+        </link>
+        <link name='roller_3_4'>
+          <pose>4.36547 15.5863 0.078775 2.93982 -0.763987 -1.26253</pose>
+          <velocity>0.000331 0.000127 -0.004733 -0.018392 -0.036069 -0.019436</velocity>
+          <acceleration>-0.2934 -0.281887 -0.144901 2.36207 0.497591 -1.70118</acceleration>
+          <wrench>-0.010181 -0.009781 -0.005028 0 -0 0</wrench>
+        </link>
+        <link name='roller_3_5'>
+          <pose>4.35232 15.5864 0.115095 2.47292 -0.7785 -0.18772</pose>
+          <velocity>-7.7e-05 0.000751 -0.004902 0.000412 -0.043776 -0.020317</velocity>
+          <acceleration>-0.224226 -0.258513 -0.119687 -0.320041 1.16391 0.071032</acceleration>
+          <wrench>-0.007781 -0.00897 -0.004153 0 -0 0</wrench>
+        </link>
+        <link name='roller_3_6'>
+          <pose>4.32034 15.5868 0.136748 1.80011 0.524515 0.869501</pose>
+          <velocity>-0.000314 0.001006 -0.005283 0.011433 -0.043676 -0.00382</velocity>
+          <acceleration>-0.182735 -0.249066 -0.058954 1.67297 -0.675141 -0.430815</acceleration>
+          <wrench>-0.006341 -0.008643 -0.002046 0 -0 0</wrench>
+        </link>
+        <link name='roller_3_7'>
+          <pose>4.28173 15.5872 0.135465 -0.073926 -1.32774 2.38898</pose>
+          <velocity>-0.000299 0.000792 -0.005729 0.003476 -0.035705 0.013372</velocity>
+          <acceleration>-0.184479 -0.257008 0.01454 -0.476185 -1.356 -2.10099</acceleration>
+          <wrench>-0.006401 -0.008918 0.000505 0 -0 0</wrench>
+        </link>
+        <link name='roller_3_8'>
+          <pose>4.25126 15.5876 0.111735 -0.162808 0.936428 -1.27381</pose>
+          <velocity>-3.8e-05 0.000191 -0.006082 -0.01272 -0.02298 0.01483</velocity>
+          <acceleration>-0.229292 -0.279298 0.073274 -1.83502 -1.36063 -0.583138</acceleration>
+          <wrench>-0.007956 -0.009692 0.002543 0 -0 0</wrench>
+        </link>
+        <link name='roller_3_9'>
+          <pose>4.24055 15.5878 0.074621 -0.141333 0.776869 -1.81658</pose>
+          <velocity>0.000383 -0.00057 -0.006219 -0.019205 -0.010502 0.004277</velocity>
+          <acceleration>-0.30076 -0.307579 0.094784 -0.834098 -1.01691 2.48812</acceleration>
+          <wrench>-0.010436 -0.010673 0.003289 0 -0 0</wrench>
+        </link>
+        <link name='roller_4_1'>
+          <pose>4.54771 15.584 0.134043 -0.046268 1.28771 -2.37414</pose>
+          <velocity>-0.000493 0.000287 -0.002313 -0.011885 -0.019229 0.001635</velocity>
+          <acceleration>-0.254497 -0.1648 -0.202388 -1.35496 -0.575723 0.620572</acceleration>
+          <wrench>-0.008831 -0.005719 -0.007023 0 -0 0</wrench>
+        </link>
+        <link name='roller_4_10'>
+          <pose>4.57673 15.5836 0.108552 0.895909 0.236863 -0.669868</pose>
+          <velocity>-0.000128 9.4e-05 -0.001884 -0.009469 -0.018397 0.003097</velocity>
+          <acceleration>-0.270578 -0.15403 -0.219312 -1.03818 -0.871001 1.45013</acceleration>
+          <wrench>-0.009389 -0.005345 -0.00761 0 -0 0</wrench>
+        </link>
+        <link name='roller_4_2'>
+          <pose>4.50925 15.5844 0.137607 -1.76323 -0.615792 2.46818</pose>
+          <velocity>-0.000539 0.000321 -0.002874 -0.012362 -0.019374 -0.001379</velocity>
+          <acceleration>-0.25185 -0.183636 -0.178816 -0.926926 -0.117637 0.029777</acceleration>
+          <wrench>-0.008739 -0.006372 -0.006205 0 -0 0</wrench>
+        </link>
+        <link name='roller_4_3'>
+          <pose>4.47604 15.5849 0.117882 2.13332 0.074145 -0.549339</pose>
+          <velocity>-0.000252 0.000184 -0.003356 -0.010386 -0.018788 -0.003632</velocity>
+          <acceleration>-0.263963 -0.203511 -0.157807 -0.284113 0.412165 0.184088</acceleration>
+          <wrench>-0.00916 -0.007062 -0.005476 0 -0 0</wrench>
+        </link>
+        <link name='roller_4_4'>
+          <pose>4.46077 15.5851 0.082402 2.81215 0.73067 0.992836</pose>
+          <velocity>0.000261 -7.5e-05 -0.00358 -0.007724 -0.017692 -0.003589</velocity>
+          <acceleration>-0.286423 -0.217176 -0.14793 -0.090921 0.770375 0.621963</acceleration>
+          <wrench>-0.009939 -0.007536 -0.005133 0 -0 0</wrench>
+        </link>
+        <link name='roller_4_5'>
+          <pose>4.46926 15.585 0.044722 -2.41757 -0.62268 -2.09846</pose>
+          <velocity>0.000811 -0.000355 -0.003463 -0.006355 -0.016503 -0.002027</velocity>
+          <acceleration>-0.310391 -0.219931 -0.153315 -0.118739 0.673898 0.502486</acceleration>
+          <wrench>-0.010771 -0.007632 -0.00532 0 -0 0</wrench>
+        </link>
+        <link name='roller_4_6'>
+          <pose>4.49826 15.5847 0.019429 2.37242 1.17992 1.49358</pose>
+          <velocity>0.000236 0.000642 -0.001907 -0.049373 0.030747 0.01769</velocity>
+          <acceleration>-0.287118 -0.212905 -0.141119 1.49834 -1.00223 -1.20436</acceleration>
+          <wrench>-0.009963 -0.007388 -0.004897 0 -0 0</wrench>
+        </link>
+        <link name='roller_4_7'>
+          <pose>4.53676 15.5842 0.015707 -1.41344 0.204174 -2.34818</pose>
+          <velocity>0.000692 -0.00065 -0.001218 0.078886 -0.000162 0.030695</velocity>
+          <acceleration>-0.25257 -0.312913 -0.080745 0.048581 0.515356 -2.801</acceleration>
+          <wrench>-0.008764 -0.010858 -0.002802 0 -0 0</wrench>
+        </link>
+        <link name='roller_4_8'>
+          <pose>4.56995 15.5838 0.035376 0.679462 -0.820213 1.3063</pose>
+          <velocity>0.001229 -0.000661 -0.00198 -0.011219 -0.019611 0.000301</velocity>
+          <acceleration>-0.32889 -0.170524 -0.238949 0.749593 -0.492455 1.0763</acceleration>
+          <wrench>-0.011412 -0.005917 -0.008292 0 -0 0</wrench>
+        </link>
+        <link name='roller_4_9'>
+          <pose>4.58522 15.5836 0.070857 0.067321 0.788426 -1.39653</pose>
+          <velocity>0.000551 -0.000259 -0.001681 -0.011503 -0.019629 0.000292</velocity>
+          <acceleration>-0.299342 -0.162984 -0.252035 -0.003237 -0.755935 1.65759</acceleration>
+          <wrench>-0.010387 -0.005656 -0.008746 0 -0 0</wrench>
+        </link>
+        <link name='wheel_1'>
+          <pose>4.51607 15.0244 0.076077 -1.57183 -0.245476 3.12947</pose>
+          <velocity>0.000314 -0.000224 0.002913 -0.010991 -0.010559 -0.000147</velocity>
+          <acceleration>-0.077343 -0.208261 -0.118569 0.069016 0.784387 0.645882</acceleration>
+          <wrench>-0.042539 -0.114544 -0.065213 0 -0 0</wrench>
+        </link>
+        <link name='wheel_2'>
+          <pose>4.29608 15.0271 0.076166 1.57166 0.496183 -0.012021</pose>
+          <velocity>0.000129 -0.000163 4.9e-05 -0.012034 -0.004864 0.000661</velocity>
+          <acceleration>-0.491172 -0.776224 -0.141913 -1.52263 0.140834 2.65821</acceleration>
+          <wrench>-0.270145 -0.426923 -0.078052 0 -0 0</wrench>
+        </link>
+        <link name='wheel_3'>
+          <pose>4.30301 15.587 0.07671 -1.57407 1.28988 3.12624</pose>
+          <velocity>0.000881 0.000251 -0.006863 0.017182 -0.034688 -0.018282</velocity>
+          <acceleration>-0.276958 -0.254925 -0.017288 1.74322 0.631499 3.14005</acceleration>
+          <wrench>-0.152327 -0.140209 -0.009508 0 -0 0</wrench>
+        </link>
+        <link name='wheel_4'>
+          <pose>4.52299 15.5843 0.076617 1.57341 -1.16436 -0.014763</pose>
+          <velocity>0.000477 -0.000197 -0.002911 -0.011644 -0.019492 -0.000212</velocity>
+          <acceleration>-0.293072 -0.201734 -0.202538 -0.125035 0.795088 0.397477</acceleration>
+          <wrench>-0.16119 -0.110953 -0.111396 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='unit_cylinder'>
+        <pose>0.767037 1.05678 0.499991 -0 -0 -1e-06</pose>
+        <scale>0.393069 0.393069 1</scale>
+        <link name='link'>
+          <pose>0.767037 1.05678 0.499991 -0 -0 -1e-06</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 -9.8 0 -0 0</acceleration>
+          <wrench>0 0 -9.8 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='unit_cylinder_clone'>
+        <pose>4.97192 4.51178 0.499991 -0 -0 -1e-06</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>4.97192 4.51178 0.499991 -0 -0 -1e-06</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 -9.8 0 -0 0</acceleration>
+          <wrench>0 0 -9.8 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='unit_cylinder_clone_0'>
+        <pose>8.02198 5.51326 0.499995 0 -0 0.036979</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>8.02198 5.51326 0.499995 0 -0 0.036979</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 -9.8 0 -0 0</acceleration>
+          <wrench>0 0 -9.8 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='unit_cylinder_clone_1'>
+        <pose>11.2765 4.99729 0.499991 -0 -0 -2e-06</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>11.2765 4.99729 0.499991 -0 -0 -2e-06</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 -9.8 0 -0 0</acceleration>
+          <wrench>0 0 -9.8 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='unit_cylinder_clone_2'>
+        <pose>10.6061 11.7687 0.499999 0 0 -1e-06</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>10.6061 11.7687 0.499999 0 0 -1e-06</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 -9.8 0 -0 0</acceleration>
+          <wrench>0 0 -9.8 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='unit_cylinder_clone_3'>
+        <pose>11.1289 15.281 0.499999 -0 -0 -2e-06</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>11.1289 15.281 0.499999 -0 -0 -2e-06</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 -9.8 0 -0 0</acceleration>
+          <wrench>0 0 -9.8 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='unit_cylinder_clone_4'>
+        <pose>6.77708 14.5566 0.499991 -0 -0 -1e-06</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>6.77708 14.5566 0.499991 -0 -0 -1e-06</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 -9.8 0 -0 0</acceleration>
+          <wrench>0 0 -9.8 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose>0 0 10 0 -0 0</pose>
+      </light>
+      <light name='user_point_light_0'>
+        <pose>11.1154 15.3528 1 0 -0 0</pose>
+      </light>
+      <light name='user_point_light_1'>
+        <pose>11.342 4.92593 1 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>11.0259 9.90328 7.67892 -2.8e-05 1.5698 1.60027</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+  </world>
+</sdf>

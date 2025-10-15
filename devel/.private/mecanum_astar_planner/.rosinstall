@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/mist/catking_ws/devel/.private/mecanum_astar_planner/setup.sh

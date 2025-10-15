@@ -1,0 +1,8 @@
+prefix=/home/mist/catking_ws/install
+
+Name: omni_wheel_driver
+Description: Description of omni_wheel_driver
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp rospy std_msgs

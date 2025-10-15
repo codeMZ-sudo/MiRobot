@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Launch file for the omni wheel speed controller -->
+    
+  <arg name="use_filter" default= "True" /> <!-- /parametro para guardar o no datos en un txt -->
+  <param name="use_filter" type="bool" value="$(arg use_filter)" />
+  
+  <node name="Wheel_Filter" pkg="omni_wheel_driver" type="wheel_filter.py" output="screen"/>
+    
+  <node name="Speed_Driver" 
+        pkg="omni_wheel_driver" 
+        type="omni_wheel_driver_disc.py" 
+        output="screen">
+
+    <!-- PID controller parameters -->
+    <param name="Kp" value="1.75" />
+    <param name="Ki" value="4.6" />
+    <param name="Kd" value="0.0" />
+
+    <!-- Robot geometry -->
+    <param name="wheel_radius" value="0.075" />
+    <param name="lx" value="0.28" />
+    <param name="ly" value="0.11" />
+
+    <!-- Transform option -->
+    <param name="world_tf" value="False" />
+
+  </node>
+  
+</launch>
+

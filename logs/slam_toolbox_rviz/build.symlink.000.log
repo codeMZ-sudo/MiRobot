@@ -1,0 +1,4 @@
+Symlinking /home/mist/catking_ws/devel/lib/libslam_toolbox_rviz.so
+Symlinking /home/mist/catking_ws/devel/lib/pkgconfig/slam_toolbox_rviz.pc
+Symlinking /home/mist/catking_ws/devel/share/slam_toolbox_rviz/cmake/slam_toolbox_rvizConfig.cmake
+Symlinking /home/mist/catking_ws/devel/share/slam_toolbox_rviz/cmake/slam_toolbox_rvizConfig-version.cmake

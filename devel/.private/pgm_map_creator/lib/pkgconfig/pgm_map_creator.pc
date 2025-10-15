@@ -1,0 +1,8 @@
+prefix=/home/mist/catking_ws/devel/.private/pgm_map_creator
+
+Name: pgm_map_creator
+Description: Description of pgm_map_creator
+Version: 0.0.0
+Cflags: -I/usr/include
+Libs: -L${prefix}/lib -lcollision_map_creator /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
+Requires: roscpp rospy

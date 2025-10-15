@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Gazebo empty world -->
+    <include file="$(find omni_gazebo)/launch/omni_world.launch">
+        <arg name="paused"          value="false"/>
+        <arg name="use_sim_time"    value="true"/>
+        <arg name="gui"             value="true"/>
+        <arg name="headless"        value="false"/>
+        <arg name="debug"           value="false"/>
+    </include>
+
+    <include file="$(find omni_gazebo)/launch/spawn_model.launch" />
+    
+    <include file="$(find omni_wheel_driver)/launch/omni_wheel_driver.launch" /> 
+
+
+</launch>

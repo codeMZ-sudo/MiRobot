@@ -1,0 +1,16 @@
+TebLocalPlannerROS:
+  # General Teb parameters
+  xy_goal_tolerance: 0.1  # Not relevant, but required for move_base
+  yaw_goal_tolerance: 0.05 # Not relevant, but required for move_base
+  free_goal_vel: 0.0       # Not relevant, but required for move_base
+  # ...
+
+  # Obstacle avoidance parameters
+  min_obstacle_dist: 0.25 # Minimum distance to an obstacle
+  weight_obstacle: 100.0  # High weight on obstacle avoidance
+
+  # Robot and trajectory parameters
+  max_vel_x: 0.01
+  max_vel_theta:  0.01
+  min_vel_x: 0.0
+  cmd_vel_timeout: 0.5  # Time to wait for new commands before stopping

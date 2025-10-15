@@ -1,0 +1,3 @@
+Symlinking /home/mist/catking_ws/devel/lib/pkgconfig/omni_gazebo.pc
+Symlinking /home/mist/catking_ws/devel/share/omni_gazebo/cmake/omni_gazeboConfig.cmake
+Symlinking /home/mist/catking_ws/devel/share/omni_gazebo/cmake/omni_gazeboConfig-version.cmake

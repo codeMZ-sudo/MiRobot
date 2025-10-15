@@ -1,0 +1,7 @@
+<launch>
+    <param name="running_on_sim" type="bool" value= "True" />
+    
+    <node name="realtime_teleop_joystick" pkg="mecanum_robot" type="joystick_bypass_dwa.py" output="screen"/>
+    <!-- <node name="navigation_controller" pkg="mecanum_robot" type="dwa_navigation_controller.py" output="screen"/> -->
+    
+</launch>

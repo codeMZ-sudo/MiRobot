@@ -1,0 +1,13 @@
+<launch>
+
+    <param name="running_on_sim" type="bool" value= "True" />
+
+    <node pkg="slam_dwa" type="advanced_safety_mini_dwa.py" name="safety_mini_dwa" output="screen">
+      <param name="safe_distance" value="0.75"/>
+      <param name="slowdown_distance" value="1.0"/>
+      <param name="prefer_lateral" value="true"/>
+      <param name="joy_cmd_topic" value="/cmd_vel_joystick"/>
+      <param name="scan_topic" value="/scan"/>
+      <param name="out_cmd_topic" value="/cmd_vel"/>
+    </node>
+</launch>

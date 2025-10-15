@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="omni_robot" xmlns:xacro="http://ros.org/wiki/xacro" >
+  <xacro:property name="M_PI" value="3.1415926535897931"/>
+  <xacro:property name="M_PI2" value="1.5708"/>
+  <link
+    name="lidar_link">
+    <inertial>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <mass
+        value="0.190" />
+      <inertia
+        ixx="1.4542908499666E-05"
+        ixy="4.8193721668021E-08"
+        ixz="2.30575406031324E-07"
+        iyy="1.85618648837978E-05"
+        iyz="-1.29750110413905E-08"
+        izz="3.10574357987674E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="${M_PI2} 0 -${M_PI2}" />
+      <geometry>
+        <mesh
+          filename="package://omni_description/meshes/lidar.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="${M_PI2} 0 -${M_PI2}" />
+      <geometry>
+        <mesh
+          filename="package://omni_description/meshes/lidar.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lidar_joint"
+    type="fixed">
+    <origin
+      xyz="0.0123 -0.013 0.305"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lidar_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

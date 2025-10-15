@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="omni_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+	
+    <xacro:include filename="$(find omni_description)/urdf/roller.gazebo.xacro"/>
+    <xacro:include filename="$(find omni_description)/urdf/roller.transmission.xacro"/>
+    <xacro:include filename="$(find omni_description)/urdf/wheel.gazebo.xacro"/>	
+    <xacro:include filename="$(find omni_description)/urdf/robot_description.gazebo.xacro"/>
+
+    <!-- sensors -->
+    <xacro:include filename="$(find omni_description)/urdf/lidar.gazebo.xacro"/>
+</robot>
+
+
+
+
+  
+  

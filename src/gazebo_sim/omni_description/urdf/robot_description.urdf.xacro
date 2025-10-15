@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<!-- Revolute-Revolute Manipulator -->
+<robot name="omni_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Constants for robot dimensions -->
+  <xacro:property name="wheel_rotationx" value="-1.5708"/>
+  <xacro:property name="M_PI2" value="1.5708"/>
+  
+  <xacro:property name="agv_base_h" value="0.115" /> <!-- agv_base height -->
+  <xacro:property name="lx_pos" value="0.11" /> <!-- wheel before L -->
+  <xacro:property name="lx_neg" value="-0.11" /> <!-- lx_neg -->
+  <xacro:property name="ly_pos" value="0.28" /> <!-- wheel left W 0.086125-->
+  <xacro:property name="ly_neg" value="-0.28" /> <!-- wheel right W -->
+  <xacro:property name="lz_wheel" value="-0.0395"/> <!-- wheel separation from base 0.0395-->
+  
+  <xacro:property name="base_link_mass"     value="30.5" /> <!-- 7.5 no jumping -->
+  <xacro:property name="base_link_w"        value="0.35"/>
+  <xacro:property name="base_link_h"        value="0.50"/>
+  <xacro:property name="base_link_d"        value="0.11"/>
+
+  <!-- roller position -->
+  <xacro:property name="roller_1_y" value="0.000000"/>
+  <xacro:property name="roller_2_y" value="0.036737"/>
+  <xacro:property name="roller_3_y" value="0.059441"/>
+  <xacro:property name="roller_4_y" value="0.059441"/>
+  <xacro:property name="roller_5_y" value="0.036737"/>
+  <xacro:property name="roller_6_y" value="0.000000"/>
+  <xacro:property name="roller_7_y" value="-0.036737"/>
+  <xacro:property name="roller_8_y" value="-0.059441"/>
+  <xacro:property name="roller_9_y" value="-0.059441"/>
+  <xacro:property name="roller_10_y" value="-0.036737"/>
+  
+
+  <xacro:property name="roller_1_x" value="0.062500"/>
+  <xacro:property name="roller_2_x" value="0.050564"/>
+  <xacro:property name="roller_3_x" value="0.019314"/>
+  <xacro:property name="roller_4_x" value="-0.019314"/>
+  <xacro:property name="roller_5_x" value="-0.050564"/>
+  <xacro:property name="roller_6_x" value="-0.062500"/>
+  <xacro:property name="roller_7_x" value="-0.050564"/>
+  <xacro:property name="roller_8_x" value="-0.019314"/>
+  <xacro:property name="roller_9_x" value="0.019314"/>
+  <xacro:property name="roller_10_x" value="0.050564"/>
+
+
+  
+  
+  <!-- Used for fixing robot to Gazebo 'base_link' -->
+  <link name="base_footprint"/>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 ${agv_base_h}" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 -${M_PI2}"/>
+      <geometry>
+        <mesh filename="package://omni_description/meshes/robot_frame.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+    
+    <visual>
+      <origin xyz="0 0 0" rpy="-${M_PI2} 0 -${M_PI2}"/>
+      <geometry>
+        <mesh filename="package://omni_description/meshes/robot_frame.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+
+    <xacro:box_inertial m="${base_link_mass}" w="${base_link_w}" h="${base_link_h}" d="${base_link_d}"/>
+    
+  </link>
+    
+  <!--zm robot LR wheel-->
+  <xacro:zm_wheel_v1 prefix="1" parent="base_link" origin_x="${lx_neg}" origin_y="${ly_pos}" origin_z="${lz_wheel}" rotation_x="${wheel_rotationx}">
+  </xacro:zm_wheel_v1>
+
+  <!--zm robot LR roller, now 10 rollers -->
+  <xacro:zm_roller_v0 prefix="roller_1_1" parent="wheel_1" origin_x="${roller_1_x}" origin_y="${roller_1_y}"
+                                                           rotation_x="0.7854" rotation_z="0.0000" />
+  <xacro:zm_roller_v0 prefix="roller_1_2" parent="wheel_1" origin_x="${roller_2_x}" origin_y="${roller_2_y}"
+                                                           rotation_x="0.7854" rotation_z="0.6283" />
+  <xacro:zm_roller_v0 prefix="roller_1_3" parent="wheel_1" origin_x="${roller_3_x}" origin_y="${roller_3_y}"
+                                                           rotation_x="0.7854" rotation_z="1.2566" />
+  <xacro:zm_roller_v0 prefix="roller_1_4" parent="wheel_1" origin_x="${roller_4_x}" origin_y="${roller_4_y}"
+                                                           rotation_x="0.7854" rotation_z="1.8849" />
+  <xacro:zm_roller_v0 prefix="roller_1_5" parent="wheel_1" origin_x="${roller_5_x}" origin_y="${roller_5_y}"
+                                                           rotation_x="0.7854" rotation_z="2.5133" />
+  <xacro:zm_roller_v0 prefix="roller_1_6" parent="wheel_1" origin_x="${roller_6_x}" origin_y="${roller_6_y}"
+                                                           rotation_x="0.7854" rotation_z="3.1416" />
+  <xacro:zm_roller_v0 prefix="roller_1_7" parent="wheel_1" origin_x="${roller_7_x}" origin_y="${roller_7_y}"
+                                                           rotation_x="0.7854" rotation_z="3.7699" />
+  <xacro:zm_roller_v0 prefix="roller_1_8" parent="wheel_1" origin_x="${roller_8_x}" origin_y="${roller_8_y}"
+                                                           rotation_x="0.7854" rotation_z="4.3982" />
+  <xacro:zm_roller_v0 prefix="roller_1_9" parent="wheel_1" origin_x="${roller_9_x}" origin_y="${roller_9_y}"
+                                                           rotation_x="0.7854" rotation_z="5.0265" />
+  <xacro:zm_roller_v0 prefix="roller_1_10" parent="wheel_1" origin_x="${roller_10_x}" origin_y="${roller_10_y}"
+                                                           rotation_x="0.7854" rotation_z="5.6549" />
+
+  <!--zm robot LF wheel-->
+  <xacro:zm_wheel_v2 prefix="2" parent="base_link" origin_x="${lx_pos}" origin_y="${ly_pos}" origin_z="${lz_wheel}" rotation_x="${wheel_rotationx}">
+  </xacro:zm_wheel_v2>
+
+  <!--zm robot LF roller, now 10 rollers -->
+  <xacro:zm_roller_v0 prefix="roller_2_1" parent="wheel_2" origin_x="${roller_1_x}" origin_y="${roller_1_y}"
+                                                           rotation_x="-0.7854" rotation_z="0.0000" />
+  <xacro:zm_roller_v0 prefix="roller_2_2" parent="wheel_2" origin_x="${roller_2_x}" origin_y="${roller_2_y}"
+                                                           rotation_x="-0.7854" rotation_z="0.6283" />
+  <xacro:zm_roller_v0 prefix="roller_2_3" parent="wheel_2" origin_x="${roller_3_x}" origin_y="${roller_3_y}"
+                                                           rotation_x="-0.7854" rotation_z="1.2566" />
+  <xacro:zm_roller_v0 prefix="roller_2_4" parent="wheel_2" origin_x="${roller_4_x}" origin_y="${roller_4_y}"
+                                                           rotation_x="-0.7854" rotation_z="1.8849" />
+  <xacro:zm_roller_v0 prefix="roller_2_5" parent="wheel_2" origin_x="${roller_5_x}" origin_y="${roller_5_y}"
+                                                           rotation_x="-0.7854" rotation_z="2.5133" />
+  <xacro:zm_roller_v0 prefix="roller_2_6" parent="wheel_2" origin_x="${roller_6_x}" origin_y="${roller_6_y}"
+                                                           rotation_x="-0.7854" rotation_z="3.1416" />
+  <xacro:zm_roller_v0 prefix="roller_2_7" parent="wheel_2" origin_x="${roller_7_x}" origin_y="${roller_7_y}"
+                                                           rotation_x="-0.7854" rotation_z="3.7699" />
+  <xacro:zm_roller_v0 prefix="roller_2_8" parent="wheel_2" origin_x="${roller_8_x}" origin_y="${roller_8_y}"
+                                                           rotation_x="-0.7854" rotation_z="4.3982" />
+  <xacro:zm_roller_v0 prefix="roller_2_9" parent="wheel_2" origin_x="${roller_9_x}" origin_y="${roller_9_y}"
+                                                           rotation_x="-0.7854" rotation_z="5.0265" />
+  <xacro:zm_roller_v0 prefix="roller_2_10" parent="wheel_2" origin_x="${roller_10_x}" origin_y="${roller_10_y}"
+                                                           rotation_x="-0.7854" rotation_z="5.6549" />
+
+  <!--zm robot RF wheel-->
+  <xacro:zm_wheel_v3 prefix="3" parent="base_link" origin_x="${lx_pos}" origin_y="${ly_neg}" origin_z="${lz_wheel}" rotation_x="${wheel_rotationx}">
+  </xacro:zm_wheel_v3>
+
+  <!--zm robot RF roller, now 10 rollers -->
+  <xacro:zm_roller_v0 prefix="roller_3_1" parent="wheel_3" origin_x="${roller_1_x}" origin_y="${roller_1_y}"
+                                                           rotation_x="0.7854" rotation_z="0.0000" />
+  <xacro:zm_roller_v0 prefix="roller_3_2" parent="wheel_3" origin_x="${roller_2_x}" origin_y="${roller_2_y}"
+                                                           rotation_x="0.7854" rotation_z="0.6283" />
+  <xacro:zm_roller_v0 prefix="roller_3_3" parent="wheel_3" origin_x="${roller_3_x}" origin_y="${roller_3_y}"
+                                                           rotation_x="0.7854" rotation_z="1.2566" />
+  <xacro:zm_roller_v0 prefix="roller_3_4" parent="wheel_3" origin_x="${roller_4_x}" origin_y="${roller_4_y}"
+                                                           rotation_x="0.7854" rotation_z="1.8849" />
+  <xacro:zm_roller_v0 prefix="roller_3_5" parent="wheel_3" origin_x="${roller_5_x}" origin_y="${roller_5_y}"
+                                                           rotation_x="0.7854" rotation_z="2.5133" />
+  <xacro:zm_roller_v0 prefix="roller_3_6" parent="wheel_3" origin_x="${roller_6_x}" origin_y="${roller_6_y}"
+                                                           rotation_x="0.7854" rotation_z="3.1416" />
+  <xacro:zm_roller_v0 prefix="roller_3_7" parent="wheel_3" origin_x="${roller_7_x}" origin_y="${roller_7_y}"
+                                                           rotation_x="0.7854" rotation_z="3.7699" />
+  <xacro:zm_roller_v0 prefix="roller_3_8" parent="wheel_3" origin_x="${roller_8_x}" origin_y="${roller_8_y}"
+                                                           rotation_x="0.7854" rotation_z="4.3982" />
+  <xacro:zm_roller_v0 prefix="roller_3_9" parent="wheel_3" origin_x="${roller_9_x}" origin_y="${roller_9_y}"
+                                                           rotation_x="0.7854" rotation_z="5.0265" />
+  <xacro:zm_roller_v0 prefix="roller_3_10" parent="wheel_3" origin_x="${roller_10_x}" origin_y="${roller_10_y}"
+                                                           rotation_x="0.7854" rotation_z="5.6549" />
+  <!--zm robot RR wheel-->
+  <xacro:zm_wheel_v4 prefix="4" parent="base_link" origin_x="${lx_neg}" origin_y="${ly_neg}" origin_z="${lz_wheel}" rotation_x="${wheel_rotationx}">
+  </xacro:zm_wheel_v4>
+
+  <!--zm robot RR roller, now 10 rollers -->
+  <xacro:zm_roller_v0 prefix="roller_4_1" parent="wheel_4" origin_x="${roller_1_x}" origin_y="${roller_1_y}"
+                                                           rotation_x="-0.7854" rotation_z="0.0000" />
+  <xacro:zm_roller_v0 prefix="roller_4_2" parent="wheel_4" origin_x="${roller_2_x}" origin_y="${roller_2_y}"
+                                                           rotation_x="-0.7854" rotation_z="0.6283" />
+  <xacro:zm_roller_v0 prefix="roller_4_3" parent="wheel_4" origin_x="${roller_3_x}" origin_y="${roller_3_y}"
+                                                           rotation_x="-0.7854" rotation_z="1.2566" />
+  <xacro:zm_roller_v0 prefix="roller_4_4" parent="wheel_4" origin_x="${roller_4_x}" origin_y="${roller_4_y}"
+                                                           rotation_x="-0.7854" rotation_z="1.8849" />
+  <xacro:zm_roller_v0 prefix="roller_4_5" parent="wheel_4" origin_x="${roller_5_x}" origin_y="${roller_5_y}"
+                                                           rotation_x="-0.7854" rotation_z="2.5133" />
+  <xacro:zm_roller_v0 prefix="roller_4_6" parent="wheel_4" origin_x="${roller_6_x}" origin_y="${roller_6_y}"
+                                                           rotation_x="-0.7854" rotation_z="3.1416" />
+  <xacro:zm_roller_v0 prefix="roller_4_7" parent="wheel_4" origin_x="${roller_7_x}" origin_y="${roller_7_y}"
+                                                           rotation_x="-0.7854" rotation_z="3.7699" />
+  <xacro:zm_roller_v0 prefix="roller_4_8" parent="wheel_4" origin_x="${roller_8_x}" origin_y="${roller_8_y}"
+                                                           rotation_x="-0.7854" rotation_z="4.3982" />
+  <xacro:zm_roller_v0 prefix="roller_4_9" parent="wheel_4" origin_x="${roller_9_x}" origin_y="${roller_9_y}"
+                                                           rotation_x="-0.7854" rotation_z="5.0265" />
+  <xacro:zm_roller_v0 prefix="roller_4_10" parent="wheel_4" origin_x="${roller_10_x}" origin_y="${roller_10_y}"
+                                                           rotation_x="-0.7854" rotation_z="5.6549" />
+
+  
+</robot>

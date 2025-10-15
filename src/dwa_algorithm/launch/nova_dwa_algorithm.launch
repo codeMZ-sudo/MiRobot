@@ -1,0 +1,55 @@
+<launch>
+
+
+    <!-- DWA Planner Node -->
+    <node name="dwa_planner_mecanum" pkg="dwa_algorithm" type="dwa_planner_mecanum_nova.py" output="screen">
+        
+        <!-- Robot Velocity Limits -->
+        <param name="max_vel_x" value="0.35" />          <!-- Max forward/backward velocity [m/s] -->
+        <param name="max_vel_y" value="0.35" />          <!-- Max lateral velocity [m/s] (mecanum specific) -->
+        <param name="max_vel_theta" value="1.0" />      <!-- Max rotational velocity [rad/s] -->
+        
+        <param name="min_vel_x" value="-0.35" />         <!-- Min forward/backward velocity [m/s] -->
+        <param name="min_vel_y" value="-0.35" />         <!-- Min lateral velocity [m/s] -->
+        <param name="min_vel_theta" value="-1.0" />     <!-- Min rotational velocity [rad/s] -->
+        
+        <!-- Acceleration Limits -->
+        <param name="max_accel_x" value="0.85" />        <!-- Max X acceleration [m/s^2] -->
+        <param name="max_accel_y" value="0.85" />        <!-- Max Y acceleration [m/s^2] -->
+        <param name="max_accel_theta" value="1.5" />    <!-- Max angular acceleration [rad/s^2] -->
+        
+        <!-- Deceleration Limits (should be negative) -->
+        <param name="max_decel_x" value="-0.85" />       <!-- Max X deceleration [m/s^2] -->
+        <param name="max_decel_y" value="-0.85" />       <!-- Max Y deceleration [m/s^2] -->
+        <param name="max_decel_theta" value="-1.5" />   <!-- Max angular deceleration [rad/s^2] -->
+        
+        <!-- Velocity Resolution (smaller = more samples = more computation) -->
+        <param name="vel_resolution_x" value="0.05" />      <!-- X velocity sampling resolution [m/s] -->
+        <param name="vel_resolution_y" value="0.05" />      <!-- Y velocity sampling resolution [m/s] -->
+        <param name="vel_resolution_theta" value="0.1" />   <!-- Angular velocity sampling resolution [rad/s] -->
+        
+        <!-- Trajectory Prediction -->  
+        <param name="predict_time" value="1.0" />       <!-- How far ahead to predict [seconds] -->
+        <param name="dt" value="0.1" />                 <!-- Time step for prediction [seconds] -->
+        
+        <!-- Cost Function Weights (tune these for desired behavior) -->
+        <!-- Higher values mean that component is more important -->
+        <param name="heading_cost_gain" value="1.0" />      <!-- 1.0 Weight for heading alignment with goal -->
+        <param name="distance_cost_gain" value="1.3" />     <!-- 1.1 Weight for distance to goal -->
+        <param name="velocity_cost_gain" value="0.25"/>     <!-- 0.25 Weight for velocity (higher = prefer faster) -->
+        <param name="obstacle_cost_gain" value="1.0" />     <!-- 1.0 Weight for obstacle avoidance -->
+        
+        <!-- Robot Geometry -->
+        <param name="robot_radius" value="0.25" />       <!-- Robot radius for collision checking [m] -->
+        
+        <!-- Safety Parameters -->
+        <param name="obstacle_margin" value="0.075" />    <!-- Extra safety distance from obstacles [m] -->
+        
+        <!-- Goal Tolerance -->
+        <param name="goal_tolerance_xy" value="0.1" />      <!-- Position tolerance [m] -->
+        <param name="goal_tolerance_theta" value="0.1" />   <!-- Orientation tolerance [rad] -->
+    </node>
+    
+    <!-- Optional: RViz for visualization -->
+    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find dwa_algorithm)/rviz/dwa_config.rviz" /> -->
+</launch>

@@ -1,0 +1,8 @@
+prefix=/home/mist/catking_ws/devel/.private/mecanum_astar_planner
+
+Name: mecanum_astar_planner
+Description: Description of mecanum_astar_planner
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
